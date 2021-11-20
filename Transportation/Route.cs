@@ -28,10 +28,15 @@ namespace Transportation
         }
         public void PrintRoute()
         {
-            Console.WriteLine($"Название: {name}\n" +
-                $"Дальность: {distance} км\n" +
-                $"Кол-во дней в пути: {time}\n" +
-                $"Оплата: {pay} рублей.");
+            Console.WriteLine($"{name}\t{distance}\t\t{time}\t\t{pay}");
+        }
+        public static bool operator == (Route route1, Route route2)
+        {
+            return (route1.name == route2.name) && (route1.time == route2.time) && (route1.distance == route2.distance);
+        }
+        public static bool operator !=(Route route1, Route route2)
+        {
+            return !(route1 == route2);
         }
     }
 }

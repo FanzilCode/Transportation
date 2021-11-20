@@ -20,10 +20,17 @@ namespace Transportation
         {
             return $"{name}%{exp}";
         }
-        public string PrintDriver()
+        public void PrintDriver()
         {
-            return $"ФИО: {name}\n" +
-                $"Стаж: {exp} лет"; 
+            Console.WriteLine($"{name}\t{exp}"); 
+        }
+        public static bool operator == (Driver driver1, Driver driver2)
+        {
+            return (driver1.name == driver2.name && driver1.exp == driver2.exp);
+        }
+        public static bool operator !=(Driver driver1, Driver driver2)
+        {
+            return !(driver1 == driver2);
         }
     }
 }
