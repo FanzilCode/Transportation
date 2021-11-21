@@ -34,7 +34,7 @@ namespace Transportation
         }
         public void PrintWork(int k) // метод для выведения информации о проделанной работе на экран
         {
-            Console.WriteLine($"{driver.name}\t\t{route.pay}\t\t\t{reward}\t\t{route.pay + reward}");
+            Console.WriteLine($"{driver.fullName}\t\t{route.pay}\t\t\t{reward}\t\t{route.pay + reward}");
         }
         public static bool operator == (WorkWith1D work1, WorkWith1D work2) // оператор равенства
         {

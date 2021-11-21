@@ -4,29 +4,38 @@ namespace Transportation
 {
     class Driver
     {
-        public string name { get; private set; } // ФИО
+        public string lastName { get; private set; } // Фамилия
+        public string firstName { get; private set; } // Имя
+        public string midName { get; private set; } // Отчество
         public int exp { get; private set; } // стаж (кол-во лет)
+        public string fullName { get; private set; } // ФИО
 
-        public Driver(string name, int exp) // конструктор
+        public Driver(string lastName, string firstName, string midName, int exp) // конструктор
         {
-            this.name = name;
+            this.lastName = lastName;
+            this.firstName = firstName;
+            this.midName = midName;
             this.exp = exp;
+            this.fullName = $"{lastName} {firstName} {midName}";
         }
         public Driver(string[] arr) // конструктор
         {
-            name = arr[0]; exp = Convert.ToInt32(arr[1]);
+            lastName = arr[0];
+            firstName = arr[1];
+            midName = arr[2];
+            exp = Convert.ToInt32(arr[3]);
         }
         public override string ToString() // переопределение метода ToString() для сохранения в файл
         {
-            return $"{name}%{exp}";
+            return $"{lastName}%{firstName}%{midName}%{exp}";
         }
         public void PrintDriver() // метод для выведения информации о водителе на экран
         {
-            Console.WriteLine($"{name}\t{exp}"); 
+            Console.WriteLine($"{lastName} {firstName} {midName}\t{exp}"); 
         }
         public static bool operator == (Driver driver1, Driver driver2) // оператор равенства
         {
-            return (driver1.name == driver2.name && driver1.exp == driver2.exp);
+            return (driver1.lastName == driver2.lastName && driver1.firstName == driver2.firstName && driver1.midName == driver2.midName && driver1.exp == driver2.exp);
         }
         public static bool operator !=(Driver driver1, Driver driver2)
         {

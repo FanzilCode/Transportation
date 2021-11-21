@@ -151,14 +151,19 @@ namespace Transportation
         // AddDriver() - метод для добавления нового водителя в список
         public static void AddDriver()
         {
-            Console.Write("ФИО: ");
-            // чтение с консоли ФИО водителя
-            string name = Console.ReadLine();
+            Console.Write("Фамилия: ");
+            // чтение с консоли фамилии водителя
+            string lastName = Console.ReadLine();
+            Console.Write("Имя: ");
+            // чтение с консоли имени водителя
+            string firstName = Console.ReadLine();
+            Console.Write("Отчество: ");
+            string midName = Console.ReadLine();
             Console.Write("Стаж: ");
             // чтение с консоли и конвертация в тип int стажа водителя
             int exp = Convert.ToInt32(Console.ReadLine());
             // вызов метода List<>.Add() для добавления нового водителя в список
-            drivers.Add(new Driver(name, exp));
+            drivers.Add(new Driver(lastName, firstName, midName, exp));
             // вызов метод Clear() для очистки консоли
             Console.Clear();
             // вызов метода PrintDrivers() для просмотра списка водителей
@@ -186,6 +191,7 @@ namespace Transportation
             Console.WriteLine("Список свободных водителей:");
             Console.WriteLine("   Фамилия Имя Отчество\t\tСтаж");
             // цикл по списку водителей
+            int count = 0;
             foreach (var driver in drivers)
             {
                 // переменная k - будет хранить информацию о том, занят ли текущий водитель в выбранный период времени
@@ -208,14 +214,18 @@ namespace Transportation
                     Console.Write(drivers.IndexOf(driver) + ") ");
                     // вызов метода PrintDriver() для выведения на экран информации о водителе
                     driver.PrintDriver();
+                    count++;
                 }
             }
+            if(count == 0)
+                Console.WriteLine("Все водители заняты.");
         }
         // PrintFreeDrivers() - метод для печати на экран списка занятых на сегодня водителей
         public static void PrintBusyDrivers()
         {
             Console.WriteLine("Список занятых водителей:");
             Console.WriteLine("   Фамилия Имя Отчество\t\tСтаж");
+            int count = 0;
             // цикл по списку водителей
             foreach (var driver in drivers)
             {
@@ -239,8 +249,11 @@ namespace Transportation
                     Console.Write(drivers.IndexOf(driver) + ") ");
                     // вызов метода PrintDriver() для выведения на экран информации о водителе
                     driver.PrintDriver();
+                    count++;
                 }
             }
+            if (count == 0)
+                Console.WriteLine("Все водители свободны.");
         }
         // AddRoute() - метод для добавления нового маршрута
         public static void AddRoute()
@@ -411,13 +424,13 @@ namespace Transportation
                         // создаем новый экземпляр класса
                         WorkWith1D work1 = (WorkWith1D)work;
                         // в список добавляется новый экземпляр
-                        pays.Add(new Pay(work1.driver.name, work1.route.pay, work1.reward));
+                        pays.Add(new Pay(work1.driver.fullName, work1.route.pay, work1.reward));
                     }
                     else
                     {
                         WorkWith2D work1 = (WorkWith2D)work;
-                        pays.Add(new Pay(work1.driver1.name, (double)work1.route.pay / 2, work1.reward));
-                        pays.Add(new Pay(work1.driver2.name, (double)work1.route.pay / 2, work1.reward));
+                        pays.Add(new Pay(work1.driver1.fullName, (double)work1.route.pay / 2, work1.reward));
+                        pays.Add(new Pay(work1.driver2.fullName, (double)work1.route.pay / 2, work1.reward));
                     }
                 }
             }
@@ -478,7 +491,13 @@ namespace Transportation
                                     PrintBusyDrivers();
                                     break;
                                 case 3:
-                                    PrintDrivers();
+                                    if (drivers.Count == 0)
+                                    {
+                                        Console.WriteLine("Список водителей пуст. Добавьте нового водителя.");
+                                        AddDriver();
+                                    }
+                                    else
+                                        PrintDrivers();
                                     break;
                                 case 4:
                                     AddDriver();
@@ -506,7 +525,13 @@ namespace Transportation
                             switch (choise2)
                             {
                                 case 1:
-                                    PrintRoutes();
+                                    if(routes.Count == 0)
+                                    {
+                                        Console.WriteLine("Список маршрутов пуст. Добавьте новый маршрут.");
+                                        AddRoute();
+                                    }
+                                    else
+                                        PrintRoutes();
                                     break;
                                 case 2:
                                     AddRoute();
