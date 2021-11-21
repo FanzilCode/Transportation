@@ -28,15 +28,15 @@ namespace Transportation
                 $"{reward}%{time1.ToShortDateString()}%{time2.ToShortDateString()}\n" +
                 $"{driver}\n";
         }
-        public void PrintWork()
+        public void PrintWork() // метод для выведения информации о проделанной работе на экран
         {
             Console.WriteLine($"{route.name}\t{time1.ToShortDateString()}\t\t{time2.ToShortDateString()}\t\t{route.pay}\t\t\t{reward}\t\t{route.pay+reward}");
         }
-        public void PrintWork(int k)
+        public void PrintWork(int k) // метод для выведения информации о проделанной работе на экран
         {
             Console.WriteLine($"{driver.name}\t\t{route.pay}\t\t\t{reward}\t\t{route.pay + reward}");
         }
-        public static bool operator == (WorkWith1D work1, WorkWith1D work2)
+        public static bool operator == (WorkWith1D work1, WorkWith1D work2) // оператор равенства
         {
             return (work1.route == work2.route) && (work1.time1 == work2.time1) && (work1.time2 == work2.time2);
         }

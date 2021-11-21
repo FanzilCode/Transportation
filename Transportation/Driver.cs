@@ -12,7 +12,7 @@ namespace Transportation
             this.name = name;
             this.exp = exp;
         }
-        public Driver(string[] arr)
+        public Driver(string[] arr) // конструктор
         {
             name = arr[0]; exp = Convert.ToInt32(arr[1]);
         }
@@ -20,11 +20,11 @@ namespace Transportation
         {
             return $"{name}%{exp}";
         }
-        public void PrintDriver()
+        public void PrintDriver() // метод для выведения информации о водителе на экран
         {
             Console.WriteLine($"{name}\t{exp}"); 
         }
-        public static bool operator == (Driver driver1, Driver driver2)
+        public static bool operator == (Driver driver1, Driver driver2) // оператор равенства
         {
             return (driver1.name == driver2.name && driver1.exp == driver2.exp);
         }

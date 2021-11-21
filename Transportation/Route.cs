@@ -26,11 +26,11 @@ namespace Transportation
         {
             return $"{name}%{distance}%{time}%{pay}";
         }
-        public void PrintRoute()
+        public void PrintRoute() // метод для выведения на экран информации о маршруте
         {
             Console.WriteLine($"{name}\t{distance}\t\t{time}\t\t{pay}");
         }
-        public static bool operator == (Route route1, Route route2)
+        public static bool operator == (Route route1, Route route2) // оператор равенства
         {
             return (route1.name == route2.name) && (route1.time == route2.time) && (route1.distance == route2.distance);
         }

@@ -11,11 +11,11 @@ namespace Transportation
         DateTime time2 { get; set; } // дата возвращения
         double reward { get; set; } // премия
 
-        public void PrintWork();
+        public void PrintWork(); // метод для выведения информации о проделанной работе на экран
         public bool IsAvailable(Driver driver, DateTime time1, DateTime time2);
         public bool IsAvailable(Route route, DateTime time1, DateTime time2);
         public bool IsAvailable(DateTime time1, DateTime time2);
-        public void PrintWork(int k);
+        public void PrintWork(int k); // метод для выведения информации о проделанной работе на экран
 
     }
 }
