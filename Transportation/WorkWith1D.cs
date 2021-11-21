@@ -52,5 +52,9 @@ namespace Transportation
         {
             return (this.route == route) && (this.time1 == time1) && (this.time2 == time2);
         }
+        public bool IsAvailable(DateTime time1, DateTime time2)
+        {
+            return (this.time1 >= time1 && this.time2 <= time2);
+        }
     }
 }

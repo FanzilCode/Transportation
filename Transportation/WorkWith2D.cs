@@ -32,7 +32,7 @@ namespace Transportation
         }
         public void PrintWork()
         {
-            Console.WriteLine($"{route.name}\t{time1.ToShortDateString()}\t\t{time2.ToShortDateString()}\t\t{(double)route.pay/2}\t\t\t{reward}\t\t{(double)route.pay + reward}");
+            Console.WriteLine($"{route.name}\t{time1.ToShortDateString()}\t\t{time2.ToShortDateString()}\t\t{(double)route.pay/2}\t\t\t{reward}\t\t{(double)route.pay/2 + reward}");
         }
         public void PrintWork(int k)
         {
@@ -54,6 +54,10 @@ namespace Transportation
         public bool IsAvailable(Route route, DateTime time1, DateTime time2)
         {
             return (this.route == route) && (this.time1 == time1) && (this.time2 == time2);
+        }
+        public bool IsAvailable(DateTime time1, DateTime time2)
+        {
+            return (this.time1 >= time1 && this.time2 <= time2);
         }
     }
 }
