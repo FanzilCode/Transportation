@@ -424,13 +424,13 @@ namespace Transportation
                         // создаем новый экземпляр класса
                         WorkWith1D work1 = (WorkWith1D)work;
                         // в список добавляется новый экземпляр
-                        pays.Add(new Pay(work1.driver.fullName, work1.route.pay, work1.reward));
+                        pays.Add(new Pay(work1.driver.fullName, work1.route.pay, work1.reward, work1.driver.exp));
                     }
                     else
                     {
                         WorkWith2D work1 = (WorkWith2D)work;
-                        pays.Add(new Pay(work1.driver1.fullName, (double)work1.route.pay / 2, work1.reward));
-                        pays.Add(new Pay(work1.driver2.fullName, (double)work1.route.pay / 2, work1.reward));
+                        pays.Add(new Pay(work1.driver1.fullName, (double)work1.route.pay / 2, work1.reward, work1.driver1.exp));
+                        pays.Add(new Pay(work1.driver2.fullName, (double)work1.route.pay / 2, work1.reward, work1.driver2.exp));
                     }
                 }
             }
@@ -573,6 +573,7 @@ namespace Transportation
                                     break;
                             }
                             break;
+
                         }
                     default:
                         break;

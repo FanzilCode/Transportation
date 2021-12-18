@@ -4,14 +4,11 @@ using System.Text;
 
 namespace Transportation
 {
-    class WorkWith2D : IWork
+    class WorkWith2D : Work
     {
-        public Route route { get; set; } // Маршрут
-        public DateTime time1 { get; set; } // дата отправки
-        public DateTime time2 { get; set; } // дата возвращения
-        public double reward { get; set; } // премия
         public Driver driver1 { get; private set; } // первый водитель
         public Driver driver2 { get; private set; } // второй водитель
+        public double reward2 { get; private set; }
 
         public WorkWith2D(Route route, DateTime time1, DateTime time2, double reward, Driver driver1, Driver driver2) // конструктор
         {
@@ -30,11 +27,11 @@ namespace Transportation
                 $"{driver1}\n" +
                 $"{driver2}\n";
         }
-        public void PrintWork() // метод для выведения на экран информации о проделанной работе
+        public override void PrintWork() // метод для выведения на экран информации о проделанной работе
         {
             Console.WriteLine($"{route.name}\t{time1.ToShortDateString()}\t\t{time2.ToShortDateString()}\t\t{(double)route.pay/2}\t\t\t{reward}\t\t{(double)route.pay/2 + reward}");
         }
-        public void PrintWork(int k) // метод для выведения на экран информации о проделанной работе
+        public override void PrintWork(int k) // метод для выведения на экран информации о проделанной работе
         {
             Console.WriteLine($"{driver1.fullName}\t\t{(double)route.pay / 2}\t\t\t{reward}\t\t{(double)route.pay / 2 + reward}");
             Console.WriteLine($"{driver2.fullName}\t\t{(double)route.pay / 2}\t\t\t{reward}\t\t{(double)route.pay / 2 + reward}");
@@ -47,17 +44,9 @@ namespace Transportation
         {
             return !(work1 == work2);
         }
-        public bool IsAvailable(Driver driver, DateTime time1, DateTime time2)
+        public override bool IsAvailable(Driver driver, DateTime time1, DateTime time2)
         {
             return (((this.driver1 == driver) || this.driver2 == driver) && (this.time1 >= time1) && (this.time2 <= time2));
-        }
-        public bool IsAvailable(Route route, DateTime time1, DateTime time2)
-        {
-            return (this.route == route) && (this.time1 == time1) && (this.time2 == time2);
-        }
-        public bool IsAvailable(DateTime time1, DateTime time2)
-        {
-            return (this.time1 >= time1 && this.time2 <= time2);
         }
     }
 }

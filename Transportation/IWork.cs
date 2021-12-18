@@ -9,7 +9,6 @@ namespace Transportation
         Route route { get; set; } // Маршрут
         DateTime time1 { get; set; } // дата оправления
         DateTime time2 { get; set; } // дата возвращения
-        double reward { get; set; } // премия
 
         public void PrintWork(); // метод для выведения информации о проделанной работе на экран
         public bool IsAvailable(Driver driver, DateTime time1, DateTime time2);
